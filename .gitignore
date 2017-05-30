@@ -1,1 +1,6 @@
 *.jar
+core/target/
+it.launcher/target/
+it.tests/target/
+ui.apps/target/
+ui.content/target/
