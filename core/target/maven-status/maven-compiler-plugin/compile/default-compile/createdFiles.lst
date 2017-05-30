@@ -1,0 +1,6 @@
+ru\bmm\aem\rss\core\package-info.class
+ru\bmm\aem\rss\core\schedulers\SimpleScheduledTask.class
+ru\bmm\aem\rss\core\filters\LoggingFilter.class
+ru\bmm\aem\rss\core\listeners\SimpleResourceListener.class
+ru\bmm\aem\rss\core\models\HelloWorldModel.class
+ru\bmm\aem\rss\core\servlets\SimpleServlet.class

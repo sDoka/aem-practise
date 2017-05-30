@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="aem-rss.core" />
+        <module name="aem-rss.it.launcher" />
+        <module name="aem-rss.it.tests" />
+        <module name="aem-rss.ui.apps" />
+        <module name="aem-rss.ui.content" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aem-rss.core" target="1.6" />
+      <module name="aem-rss.it.launcher" target="1.6" />
+      <module name="aem-rss.it.tests" target="1.6" />
+      <module name="aem-rss.ui.apps" target="1.6" />
+      <module name="aem-rss.ui.content" target="1.6" />
+      <module name="aemrss-last" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
