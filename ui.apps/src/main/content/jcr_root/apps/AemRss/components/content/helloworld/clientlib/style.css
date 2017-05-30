@@ -1,0 +1,9 @@
+.animated-column-one {
+    -webkit-animation-delay: 1s; /* Safari 4.0 - 8.0 */
+    animation-delay: 1s;
+}
+
+.animated-column-two {
+    -webkit-animation-delay: 1.5s; /* Safari 4.0 - 8.0 */
+    animation-delay: 1.5s;
+}
