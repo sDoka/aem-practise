@@ -14,7 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="aem-rss.core" target="1.6" />
+      <module name="aem-rss.core" target="1.7" />
       <module name="aem-rss.it.launcher" target="1.6" />
       <module name="aem-rss.it.tests" target="1.6" />
       <module name="aem-rss.ui.apps" target="1.6" />

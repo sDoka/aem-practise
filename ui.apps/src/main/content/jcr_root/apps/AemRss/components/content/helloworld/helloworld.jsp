@@ -8,17 +8,16 @@
 <sling:adaptTo adaptable="${resource}" adaptTo="ru.bmm.aem.rss.core.models.HelloWorldModel" var="helloModel"/>
 
 <div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
+    <strong>Well done!</strong> This is a demonstration of bootstrap activite.
 </div>
 
 
 <div class="col-md-6 animated-column animated-column-one" id="first-column">
-    HelloWorld says on first column:
+    HelloWorld says on first column from SlingModel:
     <p> ${helloModel.message} </p>
 </div>
 <div class="col-md-6  animated-column animated-column-two" id="second-column">
-    HelloWorld says on second column:
-    <p> ${helloModel.message} </p>
+    These columns jump with animateCss
 </div>
 
 <cq:includeClientLib js="AemRss.jquery" />
