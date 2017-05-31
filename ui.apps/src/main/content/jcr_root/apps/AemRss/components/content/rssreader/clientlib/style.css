@@ -1,0 +1,32 @@
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family:'Glyphicons Halflings';
+    /* essential for enabling glyphicon */
+    content:"\e114";
+    /* adjust as needed, taken from bootstrap.css */
+    float: right;
+    /* adjust as needed */
+    color: grey;
+    /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content:"\e080";
+    /* adjust as needed, taken from bootstrap.css */
+}
+.panel-heading {
+    cursor: pointer;
+}
+
+.panel.panel-default {
+    border-color: #0a0808;
+}
+
+.panel.panel-default>.panel-heading {
+    background-color: #ebfff5;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+    padding-bottom: 4%;
+    padding-top: 4%;
+}

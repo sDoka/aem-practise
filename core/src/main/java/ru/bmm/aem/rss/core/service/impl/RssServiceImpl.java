@@ -25,7 +25,7 @@ import javax.xml.stream.events.XMLEvent;
  */
 @Component(immediate = true)
 @Service(RssService.class)
-public class RSSFeedParser implements RssService {
+public class RssServiceImpl implements RssService {
     private static final String TITLE = "title";
     private static final String DESCRIPTION = "description";
     private static final String CHANNEL = "channel";

@@ -22,6 +22,12 @@
                         name="./rssUrl"
                         validateOnBlur="true"
                         xtype="textfield"/>
+                    <prop4
+                        jcr:primaryType="nt:unstructured"
+                        fieldLabel="Max items count"
+                        name="./rssMaxItems"
+                        validateOnBlur="true"
+                        xtype="numberfield"/>
                 </items>
             </tab1>
             <image
