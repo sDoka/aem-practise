@@ -37,24 +37,6 @@ public class RSSFeedParser implements RssService {
     private static final String PUB_DATE = "pubDate";
     private static final String GUID = "guid";
 
-    private String getCharacterData(XMLEvent event, XMLEventReader eventReader)
-            throws XMLStreamException {
-        String result = "";
-        event = eventReader.nextEvent();
-        if (event instanceof Characters) {
-            result = event.asCharacters().getData();
-        }
-        return result;
-    }
-
-    private InputStream readRssXml(URL url) {
-        try {
-            return url.openStream();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public List<FeedMessage> getItems(String url) throws RSSServiceException {
 
@@ -143,5 +125,23 @@ public class RSSFeedParser implements RssService {
             throw new RuntimeException(e);
         }
         return items;
+    }
+
+    private String getCharacterData(XMLEvent event, XMLEventReader eventReader)
+            throws XMLStreamException {
+        String result = "";
+        event = eventReader.nextEvent();
+        if (event instanceof Characters) {
+            result = event.asCharacters().getData();
+        }
+        return result;
+    }
+
+    private InputStream readRssXml(URL url) {
+        try {
+            return url.openStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
