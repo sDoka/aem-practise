@@ -9,10 +9,10 @@
 <cq:includeClientLib css="AemRss.rss-reader" />
 
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="ru.bmm.aem.rss.core.models.Feed" var="model"/>
-
+<img src="${model.imagePath}" />
 <div class="rss-reader-container">
     <h2>${model.title}</h2>
-    <img src="${model.imagePath}" />
+
     <div class="container-fluid">
         <c:choose>
             <c:when test="${model.hasError}">

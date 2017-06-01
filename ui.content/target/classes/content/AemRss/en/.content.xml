@@ -21,7 +21,6 @@
             <servicecomponent
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="AemRss/components/content/rssreader"/>
-
         </par>
     </jcr:content>
 </jcr:root>
