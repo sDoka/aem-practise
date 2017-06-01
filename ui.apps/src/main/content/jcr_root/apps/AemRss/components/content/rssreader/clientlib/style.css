@@ -36,6 +36,6 @@
 }
 
 .animated {
-    -webkit-animation-delay: 1.5s; /* Safari 4.0 - 8.0 */
-    animation-delay: 1.5s;
+    -webkit-animation-delay: 0.5s; /* Safari 4.0 - 8.0 */
+    animation-delay: 0.5s;
 }

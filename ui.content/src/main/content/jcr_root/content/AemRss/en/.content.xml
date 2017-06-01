@@ -21,14 +21,6 @@
             <servicecomponent
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="AemRss/components/content/rssreader"/>
-            <image_1
-                jcr:created="{Date}2015-01-01T00:00:00.000Z"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="AemRss/components/content/image"
-                fileReference="/content/dam/AemRss/asset.jpg"/>
         </par>
-        <image jcr:primaryType="nt:unstructured">
-            <file/>
-        </image>
     </jcr:content>
 </jcr:root>

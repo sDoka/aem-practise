@@ -33,16 +33,14 @@ function initRssReader(_currentFeedUrl) {
         };
 
     $showMoreItemsBtn.on('click', function(e) {
-        var newRssItems = [],
-            currentItemsCount = $rssAccordionGroup.children().size();
-        getMoreItems(currentItemsCount, function(newItems) {
-            $.each(newItems, function(index, item) {
-                 addNewRssItem(item);
-            });
-        });
+        var currentItemsCount = $rssAccordionGroup.children().size();
 
-
+        $showMoreItemsBtn.fadeOut(1000, function() {
+               getMoreItems(currentItemsCount, function(newItems) {
+                   $.each(newItems, function(index, item) {
+                        addNewRssItem(item);
+                   });
+               });
+          });
     });
-
-
 }

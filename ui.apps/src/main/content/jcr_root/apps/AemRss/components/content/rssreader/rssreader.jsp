@@ -40,7 +40,7 @@
                     </div>
                 </c:forEach>
                 </div>
-                <button id="show-more-items-btn" type="button" class="btn btn-info">Show more...</button>
+                <button id="show-more-items-btn" type="button" class="btn btn-info">Show more with AJAX...</button>
             </c:otherwise>
         </c:choose>
     </div>

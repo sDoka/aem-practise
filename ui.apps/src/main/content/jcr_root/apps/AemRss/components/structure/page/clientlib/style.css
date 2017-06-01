@@ -17,6 +17,7 @@
 .page__main {
     position: relative;
     max-width: 940px;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 0 1em 1em;
     background-color: #fff;
@@ -48,4 +49,5 @@
 
 .page__copyright {
     margin-bottom: 0;
+    display: none;
 }
