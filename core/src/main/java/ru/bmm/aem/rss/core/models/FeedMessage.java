@@ -16,7 +16,7 @@ public class FeedMessage {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.replaceAll("\'","").replaceAll("\"","");
     }
 
     public String getDescription() {
@@ -24,7 +24,7 @@ public class FeedMessage {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.replaceAll("\'","").replaceAll("\"","");
     }
 
     public String getLink() {
@@ -57,7 +57,6 @@ public class FeedMessage {
                 + "\"title\":\"" + title + "\""
                 + ", \"description\":\"" + description + "\""
                 + ", \"link\":\"" + link + "\""
-                + ", \"author\":\"" + author + "\""
                 + "}}";
     }
 }

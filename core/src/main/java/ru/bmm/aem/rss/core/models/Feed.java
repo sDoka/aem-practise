@@ -42,14 +42,15 @@ public class Feed {
     private String rssUrl;
 
     @Inject @Via("resource")
-    @Named("rssMaxItems") @Optional
+    @Named("rssMaxItems")
+    @Default (intValues = 10)
     private int maxRssItemsCount;
 
     @Inject @Via("resource")
     @Named("fileReference") @Optional
     private String imagePath;
 
-    private List<FeedMessage> items = new ArrayList<FeedMessage>();
+    private List<FeedMessage> items = new ArrayList<>();
 
     private boolean hasError = false;
     private String errorMessage = "";
@@ -63,6 +64,10 @@ public class Feed {
     public void init() {
         try {
             this.items = rssService.getItems(this.getRssUrl());
+            if (items.size()  > maxRssItemsCount) {
+                this.items = items.subList(0, maxRssItemsCount);
+            }
+
         } catch (RSSServiceException e) {
             log.error(e.getMessage());
             this.hasError = true;

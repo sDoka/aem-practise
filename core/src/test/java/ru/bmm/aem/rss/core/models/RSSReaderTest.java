@@ -5,4 +5,5 @@ package ru.bmm.aem.rss.core.models;
  */
 public class RSSReaderTest {
 
+
 }

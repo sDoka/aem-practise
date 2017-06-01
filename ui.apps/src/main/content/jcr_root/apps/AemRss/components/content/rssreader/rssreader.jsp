@@ -10,7 +10,7 @@
 
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="ru.bmm.aem.rss.core.models.Feed" var="model"/>
 
-<div class="rssreader">
+<div class="rss-reader-container">
     <h2>${model.title}</h2>
     <img src="${model.imagePath}" />
     <div class="container-fluid">
@@ -31,7 +31,7 @@
                         </div>
                         <div id="collapse${loop.index}" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <div>
+                                <div class="item-text">
                                     ${item.description}
                                 </div>
                                  <a href="${item.link}" target="_blank">Read more..</a>
@@ -40,6 +40,7 @@
                     </div>
                 </c:forEach>
                 </div>
+                <button id="show-more-items-btn" type="button" class="btn btn-info">Show more...</button>
             </c:otherwise>
         </c:choose>
     </div>
@@ -52,6 +53,6 @@
 
 <script>
     $(document).ready(function(e) {
-        initRssReader();
+        initRssReader('${model.rssUrl}');
     });
 </script>

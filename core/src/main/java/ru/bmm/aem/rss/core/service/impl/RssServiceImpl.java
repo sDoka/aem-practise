@@ -2,7 +2,6 @@ package ru.bmm.aem.rss.core.service.impl;
 
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
-import ru.bmm.aem.rss.core.models.Feed;
 import ru.bmm.aem.rss.core.models.FeedMessage;
 import ru.bmm.aem.rss.core.service.api.RssService;
 import ru.bmm.aem.rss.core.service.api.exceptions.RSSServiceException;
@@ -41,7 +40,7 @@ public class RssServiceImpl implements RssService {
     public List<FeedMessage> getItems(String url) throws RSSServiceException {
 
         URL rssURL;
-        List<FeedMessage> items = new ArrayList<FeedMessage>();
+        List<FeedMessage> items = new ArrayList<>();
 
         try {
             boolean isFeedHeader = true;
