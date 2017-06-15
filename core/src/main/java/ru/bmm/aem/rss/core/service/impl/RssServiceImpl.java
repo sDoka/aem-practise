@@ -5,6 +5,7 @@ import org.apache.felix.scr.annotations.Service;
 import ru.bmm.aem.rss.core.models.FeedMessage;
 import ru.bmm.aem.rss.core.service.api.RssService;
 import ru.bmm.aem.rss.core.service.api.exceptions.RSSServiceException;
+import ru.bmm.aem.rss.core.service.contstants.RssConstants;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,110 +26,74 @@ import javax.xml.stream.events.XMLEvent;
 @Component(immediate = true)
 @Service(RssService.class)
 public class RssServiceImpl implements RssService {
-    private static final String TITLE = "title";
-    private static final String DESCRIPTION = "description";
-    private static final String CHANNEL = "channel";
-    private static final String LANGUAGE = "language";
-    private static final String COPYRIGHT = "copyright";
-    private static final String LINK = "link";
-    private static final String AUTHOR = "author";
-    private static final String ITEM = "item";
-    private static final String PUB_DATE = "pubDate";
-    private static final String GUID = "guid";
+
+    private final XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+    private FeedMessage feedMessage = new FeedMessage();
+    private List<FeedMessage> items;
 
     @Override
     public List<FeedMessage> getItems(String url) throws RSSServiceException {
-
+        items = new ArrayList<>();
         URL rssURL;
-        List<FeedMessage> items = new ArrayList<>();
-
         try {
-            boolean isFeedHeader = true;
-            // Set header values intial to the empty string
-            String description = "";
-            String title = "";
-            String link = "";
-            String language = "";
-            String copyright = "";
-            String author = "";
-            String pubdate = "";
-            String guid = "";
-
-            // First create a new XMLInputFactory
-            XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-            // Setup a new eventReader
-
             try {
                 rssURL = new URL(url);
             } catch (MalformedURLException e) {
-                throw new RSSServiceException("", e);
+                throw new RSSServiceException("Failed to load RSS from URL : " + url + ". ", e);
             }
 
             InputStream in = readRssXml(rssURL);
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+
             // readRssXml the XML document
             while (eventReader.hasNext()) {
                 XMLEvent event = eventReader.nextEvent();
                 if (event.isStartElement()) {
-                    String localPart = event.asStartElement().getName()
-                            .getLocalPart();
+                    String localPart = event.asStartElement().getName().getLocalPart();
                     switch (localPart) {
-                        case ITEM:
-                            if (isFeedHeader) {
-                                isFeedHeader = false;
-                                //TODO make this class service and get feed correctly
-                                items = new ArrayList<FeedMessage>();
-                            }
-                            event = eventReader.nextEvent();
+                        case RssConstants.ITEM:
+                            feedMessage = new FeedMessage();
                             break;
-                        case TITLE:
-                            title = getCharacterData(event, eventReader);
+                        case RssConstants.TITLE:
+                            feedMessage.setTitle(getCharacterData(event, eventReader));
                             break;
-                        case DESCRIPTION:
-                            description = getCharacterData(event, eventReader);
+                        case RssConstants.DESCRIPTION:
+                            feedMessage.setDescription(getCharacterData(event, eventReader));
                             break;
-                        case LINK:
-                            link = getCharacterData(event, eventReader);
+                        case RssConstants.LINK:
+                            feedMessage.setLink(getCharacterData(event, eventReader));
                             break;
-                        case GUID:
-                            guid = getCharacterData(event, eventReader);
+                        case RssConstants.GUID:
+                            feedMessage.setGuid(getCharacterData(event, eventReader));
                             break;
-                        case LANGUAGE:
-                            language = getCharacterData(event, eventReader);
+                        case RssConstants.LANGUAGE:
+                            feedMessage.setLanguage(getCharacterData(event, eventReader));
                             break;
-                        case AUTHOR:
-                            author = getCharacterData(event, eventReader);
+                        case RssConstants.AUTHOR:
+                            feedMessage.setAuthor(getCharacterData(event, eventReader));
                             break;
-                        case PUB_DATE:
-                            pubdate = getCharacterData(event, eventReader);
+                        case RssConstants.PUB_DATE:
+                            feedMessage.setPubdate(getCharacterData(event, eventReader));
                             break;
-                        case COPYRIGHT:
-                            copyright = getCharacterData(event, eventReader);
+                        case RssConstants.COPYRIGHT:
+                            feedMessage.setCopyright(getCharacterData(event, eventReader));
                             break;
                     }
                 } else if (event.isEndElement()) {
-                    if (event.asEndElement().getName().getLocalPart() == (ITEM)) {
-                        FeedMessage message = new FeedMessage();
-                        message.setAuthor(author);
-                        message.setDescription(description);
-                        message.setGuid(guid);
-                        message.setLink(link);
-                        message.setTitle(title);
-                        items.add(message);
-                        event = eventReader.nextEvent();
-                        continue;
+                    if (RssConstants.ITEM.equals(event.asEndElement().getName().getLocalPart())) {
+                        items.add(feedMessage);
                     }
                 }
             }
         } catch (XMLStreamException e) {
-            throw new RuntimeException(e);
+            throw new RSSServiceException("XML stream exception occurred while reading xml stream. ", e);
         }
         return items;
     }
 
     private String getCharacterData(XMLEvent event, XMLEventReader eventReader)
             throws XMLStreamException {
-        String result = "";
+        String result = RssConstants.BLANK_STRING;
         event = eventReader.nextEvent();
         if (event instanceof Characters) {
             result = event.asCharacters().getData();
@@ -136,11 +101,11 @@ public class RssServiceImpl implements RssService {
         return result;
     }
 
-    private InputStream readRssXml(URL url) {
+    private InputStream readRssXml(URL url) throws RSSServiceException {
         try {
             return url.openStream();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RSSServiceException("Failed to read Rss xml file from URL : " + url.toString() + ". ", e);
         }
     }
 }

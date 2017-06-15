@@ -38,7 +38,7 @@ public class RSSReaderTest {
         assertNotNull(items);
     }
 
-    @Test (expected = RuntimeException.class)
+    @Test (expected = RSSServiceException.class)
     public void wrongFeedUrl() throws  RSSServiceException {
             rssServiceImpl.getItems(incorrectFeedUrl);
     }

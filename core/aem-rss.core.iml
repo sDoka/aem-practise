@@ -30,8 +30,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.5.11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.jcr:jcr:2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.adobe.aem:aem-api:6.0.0.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.sling:org.apache.sling.models.api:1.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.sling:org.apache.sling.models.api:1.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.9.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit-addons:junit-addons:1.4" level="project" />

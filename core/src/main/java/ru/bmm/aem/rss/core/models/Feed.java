@@ -8,6 +8,7 @@ import org.apache.sling.models.annotations.Via;
 import org.slf4j.Logger;
 import ru.bmm.aem.rss.core.service.api.RssService;
 import ru.bmm.aem.rss.core.service.api.exceptions.RSSServiceException;
+import ru.bmm.aem.rss.core.service.contstants.RssConstants;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -33,6 +34,13 @@ import java.util.List;
 @Model(adaptables = SlingHttpServletRequest.class)
 public class Feed {
 
+    @Inject
+    private RssService rssService;
+
+    @Inject
+    @Named("log")
+    private Logger log;
+
     @Inject @Via("resource")
     @Default (values = "Apple Hot News")
     private String title;
@@ -53,18 +61,13 @@ public class Feed {
     private List<FeedMessage> items = new ArrayList<>();
 
     private boolean hasError = false;
-    private String errorMessage = "";
-
-    private SlingHttpServletRequest request;
-    public Feed(SlingHttpServletRequest request) {
-        this.request = request;
-    }
+    private String errorMessage = RssConstants.BLANK_STRING;
 
     @PostConstruct
     public void init() {
         try {
             this.items = rssService.getItems(this.getRssUrl());
-            if (items.size()  > maxRssItemsCount) {
+            if (items.size() > maxRssItemsCount) {
                 this.items = items.subList(0, maxRssItemsCount);
             }
 
@@ -74,8 +77,6 @@ public class Feed {
             this.errorMessage = "Failed to parse feed for link : " + rssUrl + ". Please, try another one.";
         }
     }
-
-    public Feed() {}
 
     public List<FeedMessage> getItems() {
         return items;
@@ -101,10 +102,4 @@ public class Feed {
         return errorMessage;
     }
 
-    @Inject
-    private RssService rssService;
-
-    @Inject
-    @Named("log")
-    private Logger log;
 }

@@ -7,8 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aem-rss.core" />
-        <module name="aem-rss.it.launcher" />
-        <module name="aem-rss.it.tests" />
         <module name="aem-rss.ui.apps" />
         <module name="aem-rss.ui.content" />
       </profile>
