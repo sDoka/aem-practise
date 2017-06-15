@@ -13,14 +13,20 @@ function initRssReader(_currentFeedUrl) {
     var currentFeedUrl = _currentFeedUrl,
         $showMoreItemsBtn = $('#show-more-items-btn'),
         $rssAccordionGroup = $('#aem-rss-accordion'),
-        addNewRssItem = function(rssItemJsonObject) {
+        addNewRssItem = function(index, rssItemJsonObject) {
             var $lastRssItem = $rssAccordionGroup.children().last(),
                 $newRssItem = $lastRssItem.clone(),
                 $titleElement = $newRssItem.find('h4'),
-                $descriptionElement = $newRssItem.find('.item-text');
+                $descriptionElement = $newRssItem.find('.item-text'),
+                $collapseBlock = $newRssItem.find("div[id^='collapse']"),
+                lastIndex = parseInt($collapseBlock.attr('index')),
+                $headerBlock = $newRssItem.find("div[href^='#collapse']"),
+                currentIndex = lastIndex + index + 1;
 
-            $titleElement.html(rssItemJsonObject.FeedMessage.title);
-            $descriptionElement.html(rssItemJsonObject.FeedMessage.description);
+            $collapseBlock.attr('id', 'collapse' + currentIndex);
+            $headerBlock.attr('href', '#collapse' + currentIndex);
+            $titleElement.html(rssItemJsonObject.title);
+            $descriptionElement.html(rssItemJsonObject.description);
 
             $newRssItem.insertAfter($lastRssItem).animateCss('fadeIn');
         },
@@ -38,7 +44,7 @@ function initRssReader(_currentFeedUrl) {
         $showMoreItemsBtn.fadeOut(1000, function() {
                getMoreItems(currentItemsCount, function(newItems) {
                    $.each(newItems, function(index, item) {
-                        addNewRssItem(item);
+                        addNewRssItem(index, item);
                    });
                });
           });

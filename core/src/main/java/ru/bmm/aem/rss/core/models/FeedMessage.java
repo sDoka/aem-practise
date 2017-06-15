@@ -1,5 +1,7 @@
 package ru.bmm.aem.rss.core.models;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import ru.bmm.aem.rss.core.service.contstants.RssConstants;
 
 /*
@@ -21,7 +23,7 @@ public class FeedMessage {
     }
 
     public void setTitle(String title) {
-        this.title = title.replaceAll("\'","").replaceAll("\"","");
+        this.title = title;
     }
 
     public String getDescription() {
@@ -29,7 +31,7 @@ public class FeedMessage {
     }
 
     public void setDescription(String description) {
-        this.description = description.replaceAll("\'","").replaceAll("\"","");
+        this.description = description;
     }
 
     public String getLink() {
@@ -82,10 +84,8 @@ public class FeedMessage {
 
     @Override
     public String toString() {
-        return "{\"FeedMessage\":{"
-                + "\"title\":\"" + title + "\""
-                + ", \"description\":\"" + description + "\""
-                + ", \"link\":\"" + link + "\""
-                + "}}";
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(this);
+        return jsonString;
     }
 }

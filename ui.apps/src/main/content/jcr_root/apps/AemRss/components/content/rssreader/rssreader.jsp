@@ -29,7 +29,7 @@
                                 ${item.title}
                             </h4>
                         </div>
-                        <div id="collapse${loop.index}" class="panel-collapse collapse">
+                        <div id="collapse${loop.index}" class="panel-collapse collapse" index="${loop.index}">
                             <div class="panel-body">
                                 <div class="item-text">
                                     ${item.description}

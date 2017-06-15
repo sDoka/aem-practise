@@ -1,6 +1,9 @@
 *.jar
 core/target/
-it.launcher/target/
-it.tests/target/
+core/aem-rss.core.iml
 ui.apps/target/
+ui.apps/aem-rss.ui.apps.iml
 ui.content/target/
+ui.content/aem-rss.ui.content.iml
+aemrss-last.iml
+.idea/

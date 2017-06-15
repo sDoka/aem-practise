@@ -43,15 +43,11 @@ public class RssReaderServlet extends SlingAllMethodsServlet {
         int currentItemsCount = Integer.parseInt(request.getParameter("itemsCount"));
         try {
             items = rssService.getItems(currentFeedUrl);
-            //FIXME 5: find symbol, that brakes JSON parsing.
-            //TODO add exception handling
-            /*if (items.size() >= currentItemsCount + NEW_ITEMS_COUNT) {
+            if (items.size() >= currentItemsCount + NEW_ITEMS_COUNT) {
                 items = items.subList(currentItemsCount, currentItemsCount + NEW_ITEMS_COUNT);
             } else {
                 items = items.subList(currentItemsCount, items.size() - 1);
-            }*/
-            items = items.subList(currentItemsCount, currentItemsCount + 4 );
-
+            }
             writer.write(items.toString());
         } catch (RSSServiceException e) {
             writer.write("{ErrorMessage : \"Failed to get rss feed items\"}");
